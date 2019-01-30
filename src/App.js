@@ -12,10 +12,7 @@ class App extends Component {
 		return (
 			<Provider store={store}>
 				<Router>
-					<div className="welcome">
-						{this.props.location.pathname !== "/" && <Nav />}
-						{routes}
-					</div>
+					<div className="welcome">{routes}</div>
 				</Router>
 				//{" "}
 			</Provider>
@@ -23,4 +20,4 @@ class App extends Component {
 	}
 }
 
-export default withRouter(App);
+export default App;

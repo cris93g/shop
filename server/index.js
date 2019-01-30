@@ -40,12 +40,18 @@ app.use(passport.session());
 passport.use(strat);
 
 passport.serializeUser((user, done) => {
-	// console.log("user", user);
+	console.log("user", user);
 	const db = app.get("db");
 	db.getUserByAuthid([user.id])
 		.then(response => {
 			if (!response[0]) {
-				db.addUserByAuthid([user.displayName, user.name, user.id, user.picture])
+				db.addUserByAuthid([
+					user.displayName,
+					user.name.familyName,
+					user.name.givenName,
+					user.user_id,
+					user.picture
+				])
 					.then(res => done(null, res[0]))
 					.catch(console.log);
 			} else return done(null, response[0]);
